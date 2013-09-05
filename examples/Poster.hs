@@ -1,5 +1,10 @@
 {-# LANGUAGE NoMonomorphismRestriction #-}
 
+module Poster (
+  main
+, benchDiagram
+) where
+
 import           Data.Char                              (digitToInt)
 import           Data.List                              (intercalate, tails)
 import           Data.List.Split                        (chunksOf)
@@ -160,4 +165,6 @@ poster =
 -- main = defaultMain colorScheme
 
 main = defaultMain (poster # centerXY # pad 1.1)
+
+benchDiagram = (poster # centerXY # pad 1.1)
 
