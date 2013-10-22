@@ -13,7 +13,7 @@ cabal-version:       >=1.10
 
 executable dragoncurve-bench
   main-is: DragonCurve.hs
-  ghc-options: -main-is DragonCurve
+  ghc-options: -main-is DragonCurve -rtsopts
   hs-source-dirs: examples
   other-extensions:    NoMonomorphismRestriction
   build-depends:
@@ -24,7 +24,7 @@ executable dragoncurve-bench
 
 executable poster-bench
   main-is: Poster.hs
-  ghc-options: -main-is Poster
+  ghc-options: -main-is Poster -rtsopts
   hs-source-dirs: examples
   other-extensions:    NoMonomorphismRestriction
   build-depends:
@@ -39,7 +39,7 @@ executable poster-bench
 
 executable rotations-bench
   main-is: Rotations.hs
-  ghc-options: -main-is Rotations
+  ghc-options: -main-is Rotations -rtsopts
   hs-source-dirs: examples
   other-extensions:    NoMonomorphismRestriction
   build-depends:
