@@ -21,10 +21,7 @@ import           Math.NumberTheory.Primes.Factorisation
 ----------------------------------------------------------------------
 
 text' d s = (stroke $ textSVG' (TextOpts s lin2 INSIDE_H KERN False d d))
-          # fc black # lw 0
-
-hsep s = hcat' with {sep = s}
-vsep s = vcat' with {sep = s}
+          # fc black # lw none
 
 ----------------------------------------------------------------------
 -- Showing how factorization diagrams are built up recursively
@@ -53,16 +50,16 @@ n =
   text' 2 "n" # italic
   <>
   ( circle 1
-  # dashing [d,d] 0
-  # lw 0.03
+  # dashing [d,d] none
+  # lwL 0.03
   # fcA (white `withOpacity` 0.8)
   )
   where
-    d = pi/30
+    d = Local (pi/30)
 
 -- Concrete example
 
-build n = vcat' with {catMethod = Distrib, sep = 1.2} . map showStep $ ps
+build n = vcat' with {_catMethod = Distrib, _sep = 1.2} . map showStep $ ps
   where
     ps = reverse . tails
        . concatMap (uncurry $ flip replicate)
@@ -76,7 +73,7 @@ showStep ps =
   |||
   factorDiagram' ps # mkBox 1
 
-mkBox r d = d # sized (Dims r r) <> square r # lw 0
+mkBox r d = d # sized (Dims r r) <> square r # lw none
 
 -- Put it all together
 
@@ -97,7 +94,7 @@ recursion =
 
 showDefaultColors = hcat $ zipWith showColor defaultColors [0..]
   where
-    showColor c d = text' 2 (show d) <> square 1 # fc c # lw 0
+    showColor c d = text' 2 (show d) <> square 1 # fc c # lw none
 
 showPrimeColors p =
     vsep 0.3
@@ -107,8 +104,8 @@ showPrimeColors p =
   where
     ds = map (:[]) . show $ p
     dSize = 2 / fromIntegral (length ds)
-    poly = polygon with { polyType = PolyRegular (fromIntegral p) 1
-                        , polyOrient = OrientH
+    poly = polygon with { _polyType = PolyRegular (fromIntegral p) 1
+                        , _polyOrient = OrientH
                         }
 
 colorScheme =
@@ -149,7 +146,7 @@ grid = fdGrid (chunksOf 10 $ [1..120])
 
 fdGrid' = vcat . map hcat . (map . map) (enbox 1 . factorDiagram)
 
-enbox n d = d # centerXY # sized (Dims (0.8*n) (0.8*n)) <> square n # lw 0
+enbox n d = d # centerXY # sized (Dims (0.8*n) (0.8*n)) <> square n # lw none
 
 poster =
   vsep 3
@@ -167,4 +164,3 @@ poster =
 main = defaultMain (poster # centerXY # pad 1.1)
 
 benchDiagram = (poster # centerXY # pad 1.1)
-

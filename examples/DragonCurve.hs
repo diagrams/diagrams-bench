@@ -26,7 +26,7 @@ toks2offsets xs = [v | (Just v, _) <- scanl f (Nothing, unitX) xs] where
   f (_, dir) _ = (Nothing, dir)
 
 genDiagram :: Renderable (Path R2) b => Int -> Diagram b R2
-genDiagram = lw 0.5 . strokeLine . lineFromOffsets . toks2offsets . (!!) gens
+genDiagram = lwL 0.5 . strokeLine . lineFromOffsets . toks2offsets . (!!) gens
 
 benchDiagram :: Renderable (Path R2) b => Diagram b R2
 benchDiagram = genDiagram 16

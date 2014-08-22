@@ -1,4 +1,4 @@
-module Main where
+omodule Main where
 
 import Criterion
 import Criterion.Main (defaultMain)
@@ -17,7 +17,7 @@ nullCairo :: Diagram Cairo R2 -> IO ()
 nullCairo d = withImageSurface FormatARGB32 400 400 $ \surf -> do
     renderWith surf . snd $ renderDia Cairo
         (CairoOptions "foo.png" (Dims 400 400) RenderOnly False) d
-    
+
 
 main :: IO ()
 main = defaultMain
@@ -27,4 +27,3 @@ main = defaultMain
         , bench "Rotations" $ whnfIO $ nullCairo Rotations.benchDiagram
         ]
     ]
-
