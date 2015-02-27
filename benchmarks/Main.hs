@@ -1,4 +1,4 @@
-omodule Main where
+module Main where
 
 import Criterion
 import Criterion.Main (defaultMain)
